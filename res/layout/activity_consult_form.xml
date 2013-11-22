@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnPersonal"
-        android:layout_below="@+id/lblPersonName" >
+        android:layout_below="@+id/txtPatientName" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,41 +28,24 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/lblConsultDate"
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Patient name"
+                android:text="Diagnostico"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/txtPatientName"
+                android:id="@+id/txtConsultDiagnostic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:enabled="false"
-                android:text="patient name" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/txtConsultDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10" >
-
-                <requestFocus />
-            </EditText>
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Observation"
+                android:text="Observaciones"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -71,12 +54,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine" />
-
-            <Spinner
-                android:id="@+id/cmbSpeciality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -99,5 +76,24 @@
         android:ems="10"
         android:enabled="false"
         android:text="doctor name" />
+
+    <TextView
+        android:id="@+id/lblConsultDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtPatientName"
+        android:layout_below="@+id/txtDoctorName"
+        android:text="Patient name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/txtPatientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblConsultDate"
+        android:ems="10"
+        android:enabled="false"
+        android:text="patient name" />
 
 </RelativeLayout>

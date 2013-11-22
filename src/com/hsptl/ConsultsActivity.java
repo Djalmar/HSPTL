@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
-public class ConsultActivity extends Activity {
+public class ConsultsActivity extends Activity {
 
 	ListView lstConsult;
 	ConsultMethods methods;
@@ -43,13 +43,12 @@ public class ConsultActivity extends Activity {
 		{
 			int personalID=getIntent().getIntExtra("PERSONALID", -1);
 			if(personalID != -1)
-				consultList=methods.getConsulstByPersonalID(personalID);
+				consultList=methods.getConsulstByDoctorID(personalID);
 			else
 				consultList=methods.selecctAll();
 		}
-		
 		for (Consult item : consultList) {
-			if(item.getPersonalID()==0)
+			if(item.getDoctorID()==0)
 				consultList.remove(item);
 		}
 		setViewAdapter(consultList);

@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PersonalFormActivity" >
+    tools:context=".DoctorFormActivity" >
 
     <TextView
         android:id="@+id/lblConsultDate"
@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="save"
-        android:text="Save" />
+        android:text="Guardar" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -44,7 +44,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User login"
+                android:text="Nombre de usuario"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -58,7 +58,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="Nombre"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -72,24 +72,10 @@
             </EditText>
 
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salary"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/txtPersonalSalary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal" />
-
-            <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Arrive time"
+                android:text="Hora de llegada"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -103,7 +89,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Leaving time"
+                android:text="Hora de salida"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -117,11 +103,11 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Charge"
+                android:text="Especialidad"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/cbxPersonalCharge"
+                android:id="@+id/cbxDoctorSpecialty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

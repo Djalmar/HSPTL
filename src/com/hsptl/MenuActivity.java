@@ -62,17 +62,17 @@ public class MenuActivity extends Activity
 	}
 	public void personalView(View view)
 	{
-		Intent intent=new Intent(this,PersonalActivity.class);
+		Intent intent=new Intent(this,DoctorsActivity.class);
 		startActivity(intent);
 	}
 	public void consultView(View view)
 	{
-		Intent intent = new Intent (this,ConsultActivity.class); 
+		Intent intent = new Intent (this,ConsultsActivity.class); 
 		startActivity(intent);
 	}
 	public void peopleView(View view)
 	{
-		Intent intent=new Intent(this,PeopleActivity.class);
+		Intent intent=new Intent(this,PatientsActivity.class);
 		startActivity(intent);
 	}
 	@Override

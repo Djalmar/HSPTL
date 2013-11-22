@@ -1,35 +1,13 @@
 package Models;
 
 public class Consult {
-
 	private int consultID;
 	private String date;
 	private String observation;
-	private int clinicHistoryID;
-	private int specialtyID;
-	private int personalID;
+	private String diagnostic;
+	private int doctorID;
+	private int patientID;
 	
-	
-	
-	
-	public int getClinicHistoryID() {
-		return clinicHistoryID;
-	}
-	public void setClinicHistoryID(int clinicHistoryID) {
-		this.clinicHistoryID = clinicHistoryID;
-	}
-	public int getSpecialtyID() {
-		return specialtyID;
-	}
-	public void setSpecialtyID(int specialtyID) {
-		this.specialtyID = specialtyID;
-	}
-	public int getPersonalID() {
-		return personalID;
-	}
-	public void setPersonalID(int personalID) {
-		this.personalID = personalID;
-	}
 	public int getConsultID() {
 		return consultID;
 	}
@@ -46,6 +24,25 @@ public class Consult {
 		return observation;
 	}
 	public void setObservation(String observation) {
-		this.observation = observation;	
+		this.observation = observation;
 	}
+	public String getDiagnostic() {
+		return diagnostic;
+	}
+	public void setDiagnostic(String diagnostic) {
+		this.diagnostic = diagnostic;
+	}
+	public int getDoctorID() {
+		return doctorID;
+	}
+	public void setDoctorID(int doctorID) {
+		this.doctorID = doctorID;
+	}
+	public int getPatientID() {
+		return patientID;
+	}
+	public void setPatientID(int patientID) {
+		this.patientID = patientID;
+	}
+		
 }

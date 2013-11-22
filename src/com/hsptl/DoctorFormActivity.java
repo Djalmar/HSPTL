@@ -1,9 +1,9 @@
 package com.hsptl;
 
 import java.util.List;
-import DB.DBHelper;
-import DB.PersonalMethods;
-import Models.Personal;
+import DB.DoctorMethods;
+import DB.SpecialtyMethods;
+import Models.Doctor;
 import Utils.Constants;
 import Utils.CurrentUser;
 import android.os.Bundle;
@@ -17,53 +17,51 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class PersonalFormActivity extends Activity implements OnItemSelectedListener {
+public class DoctorFormActivity extends Activity implements OnItemSelectedListener {
 
 	EditText txtName;
-	EditText txtSalary;
 	EditText txtArriveTime;
 	EditText txtLeavingTime;
 	EditText txtLogin;
-	Spinner cmbCharges;
-	Personal personal;
-	PersonalMethods methods;
-	String selectedCharge;
+	
+	Spinner cmbSpecialties;
+	Doctor personal;
+	DoctorMethods methods;
+	String selectedSpecialty;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_personal_form);
 		bindingData();
-		methods=new PersonalMethods(this);
+		methods=new DoctorMethods(this);
 		if(CurrentUser._userMode.equals(Constants.EDIT_MODE))
-			personal=methods.getPersonalByID(getIntent().getIntExtra("PERSONALID", 0));
+			personal=methods.getDoctorByID(getIntent().getIntExtra("PERSONALID", 0));
 		loadToView();
 	}
 
 	private void loadToView() 
 	{
 		if(personal==null)
-			personal=new Personal();
+			personal=new Doctor();
 		txtName.setText(personal.getName());
 		txtArriveTime.setText(personal.getArriveTime());
 		txtLeavingTime.setText(personal.getLeavingTime());
-		txtSalary.setText(personal.getSalary()+"");
 		txtLogin.setText(personal.getLogin());
 		if(CurrentUser._userMode.equals(Constants.EDIT_MODE))
 		{	
-			selectedCharge=personal.getCharge();
-			cmbCharges.setEnabled(false);
+			cmbSpecialties.setEnabled(false);
 			txtLogin.setEnabled(false);
 		}
 		loadDataToCmb();
 	}
-
+	SpecialtyMethods specialtyMethods;
 	private void loadDataToCmb() 
 	{
-		DBHelper helper=new DBHelper(this);
-		List<String> tables=helper.getCharges();
+		specialtyMethods = new SpecialtyMethods(this);
+		List<String> tables=specialtyMethods.selectNames();
 		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, R.layout.tablesadapter, tables);
-		cmbCharges.setAdapter(adapter);
-		cmbCharges.setOnItemSelectedListener(this);
+		cmbSpecialties.setAdapter(adapter);
+		cmbSpecialties.setOnItemSelectedListener(this);
 	}
 	public void save(View view)
 	{
@@ -84,12 +82,11 @@ public class PersonalFormActivity extends Activity implements OnItemSelectedList
 	private void loadFromView() 
 	{
 		if(personal==null)
-			personal=new Personal();
+			personal=new Doctor();
 		personal.setName(txtName.getText().toString());
 		personal.setArriveTime(txtArriveTime.getText().toString());
 		personal.setLeavingTime(txtLeavingTime.getText().toString());
-		personal.setSalary(Double.parseDouble(txtSalary.getText().toString()));
-		personal.setCharge(selectedCharge);
+		personal.setSpecialty(specialtyMethods.getSpecialty(selectedSpecialty));
 		personal.setLogin(txtLogin.getText().toString());
 	}
 
@@ -98,9 +95,8 @@ public class PersonalFormActivity extends Activity implements OnItemSelectedList
 		txtName=(EditText)findViewById(R.id.txtPersonalName);
 		txtArriveTime=(EditText)findViewById(R.id.txtPersonalArriveTie);
 		txtLeavingTime=(EditText)findViewById(R.id.txtPersonalLeavingTime);
-		txtSalary=(EditText)findViewById(R.id.txtPersonalSalary);
 		txtLogin=(EditText)findViewById(R.id.txtPersonalLogin);
-		cmbCharges=(Spinner)findViewById(R.id.cbxPersonalCharge);
+		cmbSpecialties=(Spinner)findViewById(R.id.cbxDoctorSpecialty);
 	}
 
 	@Override
@@ -114,7 +110,7 @@ public class PersonalFormActivity extends Activity implements OnItemSelectedList
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) 
 	{
-		selectedCharge=cmbCharges.getItemAtPosition(arg2).toString();
+		selectedSpecialty=cmbSpecialties.getItemAtPosition(arg2).toString();
 	}
 
 	@Override
@@ -122,5 +118,4 @@ public class PersonalFormActivity extends Activity implements OnItemSelectedList
 		// TODO Auto-generated method stub
 		
 	}
-
 }

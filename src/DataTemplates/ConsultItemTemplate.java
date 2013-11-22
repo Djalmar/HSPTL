@@ -2,12 +2,12 @@ package DataTemplates;
 
 import java.util.List;
 import com.hsptl.R;
-import DB.DBHelper;
-import DB.PersonMethods;
-import DB.PersonalMethods;
+import DB.PatientMethods;
+import DB.DoctorMethods;
+import DB.SpecialtyMethods;
 import Models.Consult;
-import Models.Person;
-import Models.Personal;
+import Models.Patient;
+import Models.Doctor;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -22,6 +22,10 @@ public class ConsultItemTemplate extends ArrayAdapter<Consult>
 	private int layoutResourceId;
 	private List<Consult> data;
 
+	DoctorMethods doctorMethods=new DoctorMethods(context);
+	PatientMethods patientMethods=new PatientMethods(context);
+	SpecialtyMethods specialtyMethods=new SpecialtyMethods(context);
+	
 	public ConsultItemTemplate(Context context, 
 			int layoutResourceId, 
 			List<Consult> data) 
@@ -50,24 +54,22 @@ public class ConsultItemTemplate extends ArrayAdapter<Consult>
 		}
 		else
 			template = (DataTemplate) row.getTag();
-		Consult consult=data.get(position);
-		Person person=personMethods.getPeronByHistoryID(consult.getClinicHistoryID());
-		if(person != null)
+		Consult consult = data.get(position);
+		Patient patient = patientMethods.getPatientByID(consult.getPatientID());
+		if(patient != null)
 		{
-			template.lblPersonName.setText(person.getName());
-			Personal personal=personalMethods.getPersonalByID(consult.getPersonalID());
-			if(personal!=null)
+			template.lblPersonName.setText(patient.getName());
+			Doctor doctor = doctorMethods.getDoctorByID(consult.getDoctorID());
+			if(doctor!=null)
 			{
-				template.lblPersonalName.setText(personal.getName());
+				template.lblPersonalName.setText(doctor.getName());
 				template.lblDate.setText(consult.getDate());
+				template.lblSpecialty.setText(doctor.getSpecialty().getName());
 			}
-			template.lblSpecialty.setText(methods.getSpecialtyByID(consult.getSpecialtyID()));
 		}
 		return row;
 	}
-	DBHelper methods=new DBHelper(context);
-	PersonalMethods personalMethods=new PersonalMethods(context);
-	PersonMethods personMethods=new PersonMethods(context);
+	
 	static class DataTemplate
 	{
 		TextView lblPersonName;

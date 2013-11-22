@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PersonFormActivity" >
+    tools:context=".PatientFormActivity" >
 
     <TextView
         android:id="@+id/lblConsultDate"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Person"
+        android:text="Paciente"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="save"
-        android:text="Save" />
+        android:text="Guardar" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -44,7 +44,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="Nombre"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -61,7 +61,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Birthday"
+                android:text="Fecha de nacimiento"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -75,7 +75,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="Genero"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -89,7 +89,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Size"
+                android:text="Altura [mts]"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -103,7 +103,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Weight"
+                android:text="Peso [Kgs]"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText

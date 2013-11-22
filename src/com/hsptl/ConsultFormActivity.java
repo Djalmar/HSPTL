@@ -1,13 +1,11 @@
 package com.hsptl;
-import java.util.ArrayList;
-import java.util.List;
 
-import DB.DBHelper;
-import DB.PersonMethods;
-import DB.PersonalMethods;
+import DB.ConsultMethods;
+import DB.PatientMethods;
+import DB.DoctorMethods;
 import Models.Consult;
-import Models.Person;
-import Models.Personal;
+import Models.Patient;
+import Models.Doctor;
 import Utils.Constants;
 import Utils.CurrentUser;
 import android.os.Bundle;
@@ -15,24 +13,23 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
 
-public class ConsultFormActivity extends Activity implements OnItemSelectedListener{
+public class ConsultFormActivity extends Activity{
 
 	Consult consult;
-	Personal personal;
-	Person person;
-	EditText txtPersonalName;
+	Doctor doctor;
+	Patient patient;
+
+	EditText txtDoctorName;
 	EditText txtUserName;
 	EditText txtObservation;
-	EditText txtDate;
-	Spinner cmbSpecialties;
-	PersonMethods personMethods;
-	PersonalMethods personalMethods;
+	EditText txtDiagnostic;
+
+	PatientMethods patientMethods;
+	DoctorMethods doctorMethods;
+	ConsultMethods consultMethods;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,55 +39,42 @@ public class ConsultFormActivity extends Activity implements OnItemSelectedListe
 	}
 	public void save(View view)
 	{
-		loadFromVIew();
-		saveChanges(methods.insertConsult(consult));
+		loadFromView();
+		saveChanges(consultMethods.insertConsult(consult));
 	}
-	
+
 	private void saveChanges(int resultCode) {
 		Intent intent=new Intent();
 		setResult(resultCode, intent);
 		finish();
 	}
 
-	private void loadFromVIew() {
-		int clinicHistoryID=personMethods.getClinicHistory(person.getPersonID());
+	private void loadFromView() {
 		if(consult==null)
 			consult=new Consult();
-		consult.setClinicHistoryID(clinicHistoryID);
-		consult.setPersonalID(personal.getPersonalID());
-		consult.setSpecialtyID(methods.getSpecialtyID(currentSpecialty));
-		consult.setDate(txtDate.getText().toString());
+		consult.setDoctorID(doctor.getDoctorID());
+		consult.setPatientID(patient.getPatientID());
+		consult.setDiagnostic(txtDiagnostic.getText().toString());
 		consult.setObservation(txtObservation.getText().toString());
 	}
 
 	private void loadToView() {
-		personMethods=new PersonMethods(this);
-		personalMethods=new PersonalMethods(this);
-		person=personMethods.getPersonByID(getIntent().getIntExtra("PERSONID", 0));
-		personal=personalMethods.getPersonalByUserID(CurrentUser._USER.getUserID());
-		if(personal==null)
+		patientMethods=new PatientMethods(this);
+		doctorMethods=new DoctorMethods(this);
+		patient=patientMethods.getPatientByID(getIntent().getIntExtra("PERSONID", 0));
+		doctor=doctorMethods.getDoctorByUserID(CurrentUser._USER.getUserID());
+		if(doctor==null)
 			saveChanges(Constants.RESULT_NOT_OK-1);
 		else
-			txtPersonalName.setText(personal.getName());
-		txtUserName.setText(person.getName());
-		loadDataToCmb();
-	}
-private DBHelper methods;
-	private void loadDataToCmb() {
-		List<String> data =new ArrayList<String>();
-		methods=new PersonMethods(this);
-		data=methods.getSpecialtys();
-		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, R.layout.tablesadapter, data);
-		cmbSpecialties.setAdapter(adapter);
-		cmbSpecialties.setOnItemSelectedListener(this);
+			txtDoctorName.setText(doctor.getName());
+		txtUserName.setText(patient.getName());
 	}
 
 	private void BindingData() {
-		txtPersonalName=(EditText)findViewById(R.id.txtDoctorName);
+		txtDoctorName=(EditText)findViewById(R.id.txtDoctorName);
 		txtUserName=(EditText)findViewById(R.id.txtPatientName);
 		txtObservation=(EditText)findViewById(R.id.txtConsultObservation);
-		txtDate=(EditText)findViewById(R.id.txtConsultDate);
-		cmbSpecialties=(Spinner)findViewById(R.id.cmbSpeciality);
+		txtDiagnostic=(EditText)findViewById(R.id.txtConsultDiagnostic);
 	}
 
 	@Override
@@ -98,19 +82,6 @@ private DBHelper methods;
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.consult, menu);
 		return true;
-	}
-
-	String currentSpecialty;
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
-		currentSpecialty=cmbSpecialties.getItemAtPosition(arg2).toString();
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

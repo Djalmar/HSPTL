@@ -2,9 +2,9 @@ package com.hsptl;
 
 import java.util.List;
 
-import DB.PersonalMethods;
-import DataTemplates.PersonalItemTemplate;
-import Models.Personal;
+import DB.DoctorMethods;
+import DataTemplates.DoctorItemTemplate;
+import Models.Doctor;
 import Models.UserPermitions;
 import Utils.Constants;
 import Utils.CurrentUser;
@@ -21,16 +21,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
-public class PersonalActivity extends Activity {
+public class DoctorsActivity extends Activity {
 
 	ListView lstPersonal;
-	List<Personal> personalList;
-	PersonalMethods methods;
+	List<Doctor> personalList;
+	DoctorMethods methods;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_personal);
-		methods=new PersonalMethods(this);
+		methods=new DoctorMethods(this);
 		personalList=methods.selectAll();
 		loadToView();
 	}
@@ -47,19 +47,19 @@ public class PersonalActivity extends Activity {
 		getMenuInflater().inflate(R.menu.personalitemenu, menu);
 	}
 
-	private void setViewAdapter(List<Personal> personalList) 
+	private void setViewAdapter(List<Doctor> personalList) 
 	{
-		PersonalItemTemplate template=new PersonalItemTemplate(this, R.layout.personaltemplate, personalList);
+		DoctorItemTemplate template=new DoctorItemTemplate(this, R.layout.personaltemplate, personalList);
 		lstPersonal.setAdapter(template);
 		
 	}
 	@Override
 	public boolean onContextItemSelected(MenuItem item) 
 	{
-		Personal personal;
+		Doctor personal;
 		AdapterContextMenuInfo info;
 		info = (AdapterContextMenuInfo) item.getMenuInfo();
-		personal= (Personal) lstPersonal.getAdapter().getItem(info.position);
+		personal= (Doctor) lstPersonal.getAdapter().getItem(info.position);
 		switch (item.getItemId()) 
 		{
 		case R.id.item1:
@@ -84,10 +84,10 @@ public class PersonalActivity extends Activity {
 			return super.onContextItemSelected(item);
 		}
 	}
-	private void consultList(Personal personal) 
+	private void consultList(Doctor personal) 
 	{
-		Intent intent =new Intent(this, ConsultActivity.class);
-		intent.putExtra("PERSONALID", personal.getPersonalID());
+		Intent intent =new Intent(this, ConsultsActivity.class);
+		intent.putExtra("PERSONALID", personal.getDoctorID());
 		startActivity(intent);
 	}
 
@@ -99,7 +99,7 @@ public class PersonalActivity extends Activity {
 					return true;
 		return false;
 	}
-	private void confirmDeletePerson(Personal personal) {
+	private void confirmDeletePerson(Doctor personal) {
 		//crear un dialogo de confirmacion
 		String message="Data don't saved";
 		if(methods.delete(personal)!=-1)
@@ -111,10 +111,10 @@ public class PersonalActivity extends Activity {
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
 
-	private void editPerson(Personal personal) 
+	private void editPerson(Doctor personal) 
 	{
-		Intent intent=new Intent(this, PersonalFormActivity.class);
-		intent.putExtra("PERSONALID", personal.getPersonalID());
+		Intent intent=new Intent(this, DoctorFormActivity.class);
+		intent.putExtra("PERSONALID", personal.getDoctorID());
 		CurrentUser._userMode=Constants.EDIT_MODE;
 		startActivityForResult(intent, 1);
 	}
@@ -145,7 +145,7 @@ public class PersonalActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.action_newPersonal:
 			// Go to edit activity
-			Intent intent = new Intent(this, PersonalFormActivity.class);
+			Intent intent = new Intent(this, DoctorFormActivity.class);
 			CurrentUser._userMode=Constants.CREATE_MODE;
 			startActivityForResult(intent, 1);
 			return true;

@@ -42,23 +42,23 @@
             android:label="@string/title_activity_patients" >
         </activity>
         <activity
-            android:name="com.hsptl.PeopleActivity"
+            android:name="com.hsptl.PatientsActivity"
             android:label="@string/title_activity_people" >
         </activity>
         <activity
-            android:name="com.hsptl.PersonalActivity"
+            android:name="com.hsptl.DoctorsActivity"
             android:label="@string/title_activity_personal" >
         </activity>
         <activity
-            android:name="com.hsptl.PersonFormActivity"
+            android:name="com.hsptl.PatientFormActivity"
             android:label="@string/title_activity_person_form" >
         </activity>
         <activity
-            android:name="com.hsptl.PersonalFormActivity"
+            android:name="com.hsptl.DoctorFormActivity"
             android:label="@string/title_activity_personal_form" >
         </activity>
         <activity
-            android:name="com.hsptl.ConsultActivity"
+            android:name="com.hsptl.ConsultsActivity"
             android:label="@string/title_activity_consult" >
         </activity>
     </application>

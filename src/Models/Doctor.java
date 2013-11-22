@@ -1,19 +1,28 @@
 package Models;
 
-import DB.PersonalChargeMethods;
 import DB.UserMethods;
 
-public class Personal {
-	private int personalID;
+public class Doctor {
+	private int doctorID;
 	private String name;
-	private double salary;
 	private String arriveTime;
 	private String leavingTime;
-	private int personalChargeID=-1;
 	private int userID;
-	private String charge="";
 	private String login="";
-
+	public Specialty specialty;
+	
+	public int getDoctorID() {
+		return doctorID;
+	}
+	public void setDoctorID(int doctorlID) {
+		this.doctorID = doctorlID;
+	}
+	public Specialty getSpecialty() {
+		return specialty;
+	}
+	public void setSpecialty(Specialty specialty) {
+		this.specialty = specialty;
+	}
 	public String getLogin() {
 		if(login.equals(""))
 		{
@@ -48,42 +57,11 @@ public class Personal {
 		}
 		return 1;
 	}
-	public String getCharge() {
-		if(charge.equals("")&&personalChargeID!=-1)
-		{
-			PersonalChargeMethods methods=new PersonalChargeMethods(null);
-			charge=methods.getCharge(personalChargeID);
-		}
-		return charge;
-	}
-	public void setCharge(String charge) 
-	{
-		//no creo usar a menos q sea un update recien llamar a la base pero aqui no creo
-		//se debe usar al crear en la base de datos
-		if(personalChargeID==-1)
-		{
-			PersonalChargeMethods methods=new PersonalChargeMethods(null);
-			personalChargeID=methods.getChargeID(charge);
-		}
-		this.charge = charge;
-	}
-	public int getPersonalID() {
-		return personalID;
-	}
-	public void setPersonalID(int personalID) {
-		this.personalID = personalID;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public double getSalary() {
-		return salary;
-	}
-	public void setSalary(double salary) {
-		this.salary = salary;
 	}
 	public String getArriveTime() {
 		return arriveTime;
@@ -96,12 +74,6 @@ public class Personal {
 	}
 	public void setLeavingTime(String leavingTime) {
 		this.leavingTime = leavingTime;
-	}
-	public int getPersonalChargeID() {
-		return personalChargeID;
-	}
-	public void setPersonalChargeID(int personalChargeID) {
-		this.personalChargeID = personalChargeID;
 	}
 	public int getUserID() {
 		return userID;

@@ -1,9 +1,9 @@
 package com.hsptl;
 
 import java.util.List;
-import DB.PersonMethods;
+import DB.PatientMethods;
 import DataTemplates.PersonItemTemplate;
-import Models.Person;
+import Models.Patient;
 import Models.UserPermitions;
 import Utils.Constants;
 import Utils.CurrentUser;
@@ -20,16 +20,16 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class PeopleActivity extends Activity {
+public class PatientsActivity extends Activity {
 
 	ListView lstPeople;
-	List<Person> peopleList;
-	PersonMethods methods;
+	List<Patient> peopleList;
+	PatientMethods methods;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_people);
-		methods=new PersonMethods(this);
+		methods=new PatientMethods(this);
 		peopleList=methods.selectAll();
 		loadToView();
 	}
@@ -38,7 +38,7 @@ public class PeopleActivity extends Activity {
 		setViewAdapter(peopleList);
 		registerForContextMenu(lstPeople);
 	}
-	private void setViewAdapter(List<Person> data) {
+	private void setViewAdapter(List<Patient> data) {
 		PersonItemTemplate template=new PersonItemTemplate(this, R.layout.persontemplate, data);
 		lstPeople.setAdapter(template);
 	}
@@ -59,10 +59,10 @@ public class PeopleActivity extends Activity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) 
 	{
-		Person person;
+		Patient person;
 		AdapterContextMenuInfo info;
 		info = (AdapterContextMenuInfo) item.getMenuInfo();
-		person= (Person) lstPeople.getAdapter().getItem(info.position);
+		person= (Patient) lstPeople.getAdapter().getItem(info.position);
 		switch (item.getItemId()) 
 		{
 		case R.id.item1:
@@ -94,16 +94,16 @@ public class PeopleActivity extends Activity {
 		}
 	}
 
-	private void consultList(Person person) 
+	private void consultList(Patient person) 
 	{
-		Intent intent =new Intent(this, ConsultActivity.class);
-		intent.putExtra("PERSONID", person.getPersonID());
+		Intent intent =new Intent(this, ConsultsActivity.class);
+		intent.putExtra("PERSONID", person.getPatientID());
 		startActivityForResult(intent,1);
 	}
 
-	private void consult(Person person) {
+	private void consult(Patient person) {
 		Intent intent =new Intent(this, ConsultFormActivity.class);
-		intent.putExtra("PERSONID", person.getPersonID());
+		intent.putExtra("PERSONID", person.getPatientID());
 		startActivityForResult(intent,1);
 	}
 	private boolean hasPermitions(String table,String permition) 
@@ -115,7 +115,7 @@ public class PeopleActivity extends Activity {
 		return false;
 	}
 
-	private void confirmDeletePerson(Person person) {
+	private void confirmDeletePerson(Patient person) {
 		//crear un dialogo de confirmacion
 		String message="Data don't saved";
 		if(methods.delete(person)!=-1)
@@ -127,10 +127,10 @@ public class PeopleActivity extends Activity {
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
 
-	private void editPerson(Person person) 
+	private void editPerson(Patient person) 
 	{
-		Intent intent=new Intent(this, PersonFormActivity.class);
-		intent.putExtra("PERSONID", person.getPersonID());
+		Intent intent=new Intent(this, PatientFormActivity.class);
+		intent.putExtra("PERSONID", person.getPatientID());
 		CurrentUser._userMode=Constants.EDIT_MODE;
 		startActivityForResult(intent, 1);
 	}
@@ -163,7 +163,7 @@ public class PeopleActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.action_newPerson:
 			// Go to edit activity
-			Intent intent = new Intent(this, PersonFormActivity.class);
+			Intent intent = new Intent(this, PatientFormActivity.class);
 			CurrentUser._userMode=Constants.CREATE_MODE;
 			startActivityForResult(intent, 1);
 			return true;

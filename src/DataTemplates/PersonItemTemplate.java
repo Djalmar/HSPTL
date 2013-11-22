@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hsptl.R;
 
-import Models.Person;
+import Models.Patient;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,15 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class PersonItemTemplate extends ArrayAdapter<Person> 
+public class PersonItemTemplate extends ArrayAdapter<Patient> 
 {
 	private Context context;
 	private int layoutResourceId;
-	private List<Person> data;
+	private List<Patient> data;
 
 	public PersonItemTemplate(Context context, 
 			int layoutResourceId, 
-			List<Person> data) 
+			List<Patient> data) 
 	{
 		super(context, layoutResourceId, data);
 		this.context=context;
@@ -48,7 +48,7 @@ public class PersonItemTemplate extends ArrayAdapter<Person>
 		}
 		else
 			template = (DataTemplate) row.getTag();
-		Person person=data.get(position);
+		Patient person=data.get(position);
 		
 		template.lblName.setText(person.getName());
 		if(person.isGender()) 

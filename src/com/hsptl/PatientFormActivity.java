@@ -1,7 +1,7 @@
 package com.hsptl;
 
-import DB.PersonMethods;
-import Models.Person;
+import DB.PatientMethods;
+import Models.Patient;
 import Utils.Constants;
 import Utils.CurrentUser;
 import android.os.Bundle;
@@ -12,24 +12,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class PersonFormActivity extends Activity {
+public class PatientFormActivity extends Activity {
 
-	Person person;
+	Patient person;
 	EditText txtName;
 	EditText txtWeight;
 	EditText txtSize;
 	EditText txtGender;
 	EditText txtBirthday;
-	PersonMethods methods;
+	PatientMethods methods;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_person_form);
 		bindingData();
-		methods=new PersonMethods(this);
+		methods=new PatientMethods(this);
 		if(CurrentUser._userMode.equals(Constants.EDIT_MODE))
 		{
-			person=methods.getPersonByID(getIntent().getIntExtra("PERSONID", 0));
+			person=methods.getPatientByID(getIntent().getIntExtra("PERSONID", 0));
 			loadToView();
 		}
 	}
@@ -63,7 +63,7 @@ public class PersonFormActivity extends Activity {
 	private void loadFromView() 
 	{
 		if(person==null)
-			person=new Person();
+			person=new Patient();
 		person.setName(txtName.getText().toString().trim());
 		person.setBirthday(txtBirthday.getText().toString());
 		person.setSize(Double.parseDouble(txtSize.getText().toString()));

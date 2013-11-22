@@ -1,7 +1,7 @@
 package DataTemplates;
 
 import java.util.List;
-import Models.Personal;
+import Models.Doctor;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import android.widget.TextView;
 
 import com.hsptl.R;
 
-public class PersonalItemTemplate extends ArrayAdapter<Personal> {
+public class DoctorItemTemplate extends ArrayAdapter<Doctor> {
 	private Context context;
 	private int layoutResourceId;
-	private List<Personal> data;
+	private List<Doctor> data;
 
-	public PersonalItemTemplate(Context context, 
+	public DoctorItemTemplate(Context context, 
 			int layoutResourceId, 
-			List<Personal> data) 
+			List<Doctor> data) 
 	{
 		super(context, layoutResourceId, data);
 		this.context=context;
@@ -44,10 +44,8 @@ public class PersonalItemTemplate extends ArrayAdapter<Personal> {
 		}
 		else
 			template = (DataTemplate) row.getTag();
-		Personal personal=data.get(position);
+		Doctor personal=data.get(position);
 		template.lblName.setText(personal.getName());
-		template.lblCharge.setText(personal.getCharge());
-		template.lblSalary.setText(personal.getSalary()+"");
 		return row;
 	}
 	static class DataTemplate

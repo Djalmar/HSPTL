@@ -1,17 +1,17 @@
 package Models;
-public class Person 
+public class Patient 
 {
-	public int personID;
+	public int patientID;
 	public String name;
 	public double weight;
 	public double size;
 	public boolean gender;
 	public String birthday;
-	public int getPersonID() {
-		return personID;
+	public int getPatientID() {
+		return patientID;
 	}
-	public void setPersonID(int personID) {
-		this.personID = personID;
+	public void setPatientID(int personID) {
+		this.patientID = personID;
 	}
 	public String getName() {
 		return name;
