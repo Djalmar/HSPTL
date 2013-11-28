@@ -8,4 +8,8 @@
         android:title="Consult"/>
     <item android:id="@+id/item14"
         android:title="View consults"/>
+    <item android:id="@+id/item15" 
+        android:title="Hospitalize"/>
+    <item android:id="@+id/item16"
+        android:title="View hospitalizes"/>
 </menu>

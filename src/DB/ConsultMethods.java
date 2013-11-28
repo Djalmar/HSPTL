@@ -27,6 +27,7 @@ public class ConsultMethods extends DBHelper
 		values.put(columns[3],consult.getDiagnostic());
 		values.put(columns[4], consult.getDoctorID());
 		values.put(columns[5], consult.getPatientID());
+		
 		try
 		{
 			return (int)db.insertOrThrow("CONSULT", null, values);

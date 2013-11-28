@@ -89,6 +89,18 @@ public class PatientsActivity extends Activity {
 			else
 				Toast.makeText(this, "You don't have permitions", Toast.LENGTH_SHORT).show();
 			return true;
+		case R.id.item15:
+			if(hasPermitions(Strings._TABLEHOSPITALIZE,Constants.CREATE_MODE))
+				hospitalize(person);
+			else
+				Toast.makeText(this, "You don't have permitions", Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.item16:
+			if(hasPermitions(Strings._TABLEHOSPITALIZE,Constants.CREATE_MODE))
+				hospitalizeList(person);
+			else
+				Toast.makeText(this, "You don't have permitions", Toast.LENGTH_SHORT).show();
+			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
@@ -103,6 +115,18 @@ public class PatientsActivity extends Activity {
 
 	private void consult(Patient person) {
 		Intent intent =new Intent(this, ConsultFormActivity.class);
+		intent.putExtra("PERSONID", person.getPatientID());
+		startActivityForResult(intent,1);
+	}
+	private void hospitalizeList(Patient person) 
+	{
+		Intent intent =new Intent(this, HospitalizeActivity.class);
+		intent.putExtra("PERSONID", person.getPatientID());
+		startActivityForResult(intent,1);
+	}
+
+	private void hospitalize(Patient person) {
+		Intent intent =new Intent(this, HospitalizeFormActivity.class);
 		intent.putExtra("PERSONID", person.getPatientID());
 		startActivityForResult(intent,1);
 	}

@@ -18,6 +18,7 @@ public class MenuActivity extends Activity
 	Button btnConsult;
 	Button btnPatients;
 	Button btnPeople;
+	Button btnHospitalize;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class MenuActivity extends Activity
 		btnConsult=(Button)findViewById(R.id.btnConsult);
 		btnPatients=(Button)findViewById(R.id.btnPatients);
 		btnPeople=(Button)findViewById(R.id.btnPeople);
+		btnHospitalize=(Button)findViewById(R.id.btnHospitalize);
 		if(!hasPermition(Strings._TABLEPERSONAL))
 			btnPersonal.setVisibility(8);
 		if(!hasPermition(Strings._TABLEUSER))
@@ -41,6 +43,8 @@ public class MenuActivity extends Activity
 			btnPatients.setVisibility(8);
 		if(!hasPermition(Strings._TABLEPERSON))
 			btnPeople.setVisibility(8);
+		if(!hasPermition(Strings._TABLEHOSPITALIZE))
+			btnHospitalize.setVisibility(8);
 	}
 	private boolean hasPermition(String _TABLEPERSONAL) 
 	{
@@ -73,6 +77,11 @@ public class MenuActivity extends Activity
 	public void peopleView(View view)
 	{
 		Intent intent=new Intent(this,PatientsActivity.class);
+		startActivity(intent);
+	}
+	public void hospitalizeView(View view)
+	{
+		Intent intent=new Intent(this,HospitalizeActivity.class);
 		startActivity(intent);
 	}
 	@Override
