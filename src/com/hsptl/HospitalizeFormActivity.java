@@ -94,5 +94,4 @@ public class HospitalizeFormActivity extends Activity{
 		getMenuInflater().inflate(R.menu.hospitalize, menu);
 		return true;
 	}
-
 }

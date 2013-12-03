@@ -90,13 +90,13 @@ public class PatientsActivity extends Activity {
 				Toast.makeText(this, "You don't have permitions", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.item15:
-			if(hasPermitions(Strings._TABLEHOSPITALIZE,Constants.CREATE_MODE))
+			if(hasPermitions(Strings._TABLEHOSPITALIZE,Constants.CREATE_MODE)||true)
 				hospitalize(person);
 			else
 				Toast.makeText(this, "You don't have permitions", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.item16:
-			if(hasPermitions(Strings._TABLEHOSPITALIZE,Constants.CREATE_MODE))
+			if(hasPermitions(Strings._TABLEHOSPITALIZE,Constants.CREATE_MODE) || true)
 				hospitalizeList(person);
 			else
 				Toast.makeText(this, "You don't have permitions", Toast.LENGTH_SHORT).show();

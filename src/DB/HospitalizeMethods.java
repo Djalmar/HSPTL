@@ -30,7 +30,6 @@ public class HospitalizeMethods extends DBHelper
 		values.put(columns[6],hospitalize.getdischargeDate());
 		values.put(columns[7],hospitalize.getdiagnostic());
 		values.put(columns[8],hospitalize.getpavilionID());
-		
 		try
 		{
 			return (int)db.insertOrThrow("HOSPITALIZE", null, values);
