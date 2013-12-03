@@ -1,9 +1,11 @@
 package DB;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import Models.Pavilion;
+import Models.Specialty;
 import Utils.Strings;
 import android.content.Context;
 import android.database.Cursor;
@@ -36,11 +38,13 @@ public class PavilionMethods extends DBHelper
 		}
 		return pavilions;
 	}
+	
 	public ArrayList<Pavilion> GetAll()
 	{
 		Cursor cursor = db.query(table, columns,null, null, null, null,null);
 		return toArray(cursor);
 	}
+	
 	private ArrayList<Pavilion> toArray(Cursor cursor) 
 	{
 		ArrayList<Pavilion> pavilions = new ArrayList<Pavilion>();
@@ -60,4 +64,18 @@ public class PavilionMethods extends DBHelper
 		pavilion.setHalls(hallMethods.GetByPavilionID(pavilion.getpavilionID()));
 		return pavilion;
 	}
+	
+	public List<String> selectNames()
+	{
+		List<String> names = new ArrayList<String>();
+		List<Pavilion> pavilions = GetAll();
+		for (Pavilion pavilion : pavilions) 
+			names.add(pavilion.getname());
+		return names;
+	}
+	
+	/*public Pavilion getPavilion(String currentPavilion)
+	{
+		return getPavilionByID(getPavilionID(currentPavilion));
+	}*/
 }

@@ -65,6 +65,10 @@
             android:name="com.hsptl.HospitalizeActivity"
             android:label="@string/title_activity_hospitalize" >
         </activity>
+        <activity
+            android:name="com.hsptl.HospitalizeFormActivity"
+            android:label="@string/title_activity_hospitalize_form" >
+        </activity>
     </application>
 
 </manifest>
