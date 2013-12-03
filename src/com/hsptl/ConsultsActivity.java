@@ -48,7 +48,7 @@ public class ConsultsActivity extends Activity {
 				consultList=methods.selecctAll();
 		}
 		for (Consult item : consultList) {
-			if(item.getDoctorID()==0)
+			if(item.getDoctorID()==0 )
 				consultList.remove(item);
 		}
 		setViewAdapter(consultList);

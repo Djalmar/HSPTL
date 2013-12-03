@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import Models.Bed;
+import Models.Hall;
 import Models.Pavilion;
 import Models.Specialty;
 import Utils.Strings;
@@ -65,15 +67,46 @@ public class PavilionMethods extends DBHelper
 		return pavilion;
 	}
 	
-	public List<String> selectNames()
+	public List<String> selectPavilionNames(ArrayList<Pavilion> pavilions)
 	{
 		List<String> names = new ArrayList<String>();
-		List<Pavilion> pavilions = GetAll();
 		for (Pavilion pavilion : pavilions) 
 			names.add(pavilion.getname());
 		return names;
 	}
-	
+	public List<String> selectHallNames(ArrayList<Pavilion> pavilions,String pavilionName)
+	{
+		List<String> names = new ArrayList<String>();
+		for (Pavilion pavilion : pavilions) 
+		{
+			if(pavilion.getname().equals(pavilionName))
+			{
+				for (Hall hall : pavilion.getHalls()) {
+					names.add(hall.getname());
+				}
+			}
+		}
+		return names;
+	}
+	public List<String> selectBedNames(ArrayList<Pavilion> pavilions,String pavilionName,String hallName)
+	{
+		List<String> names = new ArrayList<String>();
+		for (Pavilion pavilion : pavilions) 
+		{
+			if(pavilion.getname().equals(pavilionName))
+			{
+				for (Hall hall : pavilion.getHalls()) {
+					if(hall.getname().equals(hallName))
+					{
+						for (Bed bed : hall.getBeds()) {
+							names.add(bed.getbedID()+"");
+						}
+					}
+				}
+			}
+		}
+		return names;
+	}
 	/*public Pavilion getPavilion(String currentPavilion)
 	{
 		return getPavilionByID(getPavilionID(currentPavilion));
