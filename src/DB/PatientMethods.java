@@ -12,7 +12,7 @@ import android.database.Cursor;
 public class PatientMethods extends DBHelper 
 {
 	private Patient person;
-	private String table=Strings._TABLEPERSON;
+	private String table=Strings._TABLEPATIENT;
 	private String[] columns={"PATIENTID","NAME","WEIGHT","SIZE","GENDER","BIRTHDAY"};
 	public PatientMethods(Context context) {
 		super(context);

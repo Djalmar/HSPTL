@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class HospitalizeMethods extends DBHelper 
 {
 	private String table=Strings._TABLEHOSPITALIZE;
-	private String[] columns={"HOSPITALIZEID","DOCTORID","PACIENTID","BEDID","HALLID","INCHARGEDATEE","DISCHARGEDATE","DIAGNOSTIC","PAVILIONID"};
+	private String[] columns={"HOSPITALIZEID","DOCTORID","PATIENTID","CAMAID","SALAID","INCHARGEDATE","DISCHARGEDATE","DIAGNOSTIC_H"};
 	public HospitalizeMethods(Context context) {
 		super(context);
 	}

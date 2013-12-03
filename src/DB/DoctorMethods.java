@@ -11,8 +11,8 @@ import android.database.Cursor;
 public class DoctorMethods extends DBHelper 
 {
 	private SpecialtyMethods specialtyMethods;
-	private String table=Strings._TABLEPERSONAL;
-	private String[] columns={"DOCTORID","NAME","SPECIALTYID","ARRIVETIME","LEAVINGTIME","PERSONALCHARGEID","USERID"};
+	private String table=Strings._TABLEDOCTOR;
+	private String[] columns={"DOCTORID","NAME","SPECIALTYID","ARRIVETIME","LEAVINGTIME","USERID"};
 	public DoctorMethods(Context context) 
 	{
 		super(context);
@@ -60,8 +60,8 @@ public class DoctorMethods extends DBHelper
 			personal.setSpecialty(specialtyMethods.getSpecialtyByID(cursor.getInt(2)));
 			personal.setArriveTime(cursor.getString(3));
 			personal.setLeavingTime(cursor.getString(4));
-			personal.setUserID((int)cursor.getShort(6));
-			personal.setLogin((int)cursor.getShort(6));
+			personal.setUserID((int)cursor.getShort(5));
+			personal.setLogin((int)cursor.getShort(5));
 			personalList.add(personal);
 		}
 		return personalList;

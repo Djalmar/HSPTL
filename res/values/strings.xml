@@ -9,6 +9,7 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_patients">PatientsActivity</string>
     <string name="title_activity_people">PeopleActivity</string>
+    <string name="title_activity_hospitalize">HospitalizeActivity</string>
     <string name="title_activity_personal">PersonalActivity</string>
     <string name="title_activity_person_form">PersonFormActivity</string>
     <string name="title_activity_personal_form">PersonalFormActivity</string>

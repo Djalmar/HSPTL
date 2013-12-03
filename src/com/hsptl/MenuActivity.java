@@ -33,7 +33,7 @@ public class MenuActivity extends Activity
 		btnPatients=(Button)findViewById(R.id.btnPatients);
 		btnPeople=(Button)findViewById(R.id.btnPeople);
 		btnHospitalize=(Button)findViewById(R.id.btnHospitalize);
-		if(!hasPermition(Strings._TABLEPERSONAL))
+		if(!hasPermition(Strings._TABLEDOCTOR))
 			btnPersonal.setVisibility(8);
 		if(!hasPermition(Strings._TABLEUSER))
 			btnUsers.setVisibility(8);
@@ -41,10 +41,10 @@ public class MenuActivity extends Activity
 			btnConsult.setVisibility(8);
 		if(!hasPermition(Strings._TABLEPATIENT))
 			btnPatients.setVisibility(8);
-		if(!hasPermition(Strings._TABLEPERSON))
+		if(!hasPermition(Strings._TABLEPATIENT))
 			btnPeople.setVisibility(8);
-		if(!hasPermition(Strings._TABLEHOSPITALIZE))
-			btnHospitalize.setVisibility(8);
+		//if(!hasPermition(Strings._TABLEHOSPITALIZE))
+			//btnHospitalize.setVisibility(8);
 	}
 	private boolean hasPermition(String _TABLEPERSONAL) 
 	{

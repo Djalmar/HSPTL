@@ -122,7 +122,7 @@ public class DoctorsActivity extends Activity {
 	private boolean hasPermitions(String edit) 
 	{
 		for (UserPermitions item : CurrentUser._USERPERMITIONS) 
-			if(item.getTableName().equals(Strings._TABLEPERSONAL))
+			if(item.getTableName().equals(Strings._TABLEDOCTOR))
 				return item.hasPermitions(edit);
 		return false;
 	}
