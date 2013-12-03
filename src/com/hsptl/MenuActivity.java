@@ -1,6 +1,12 @@
 package com.hsptl;
 
+import java.util.ArrayList;
+
+import DB.BedMethods;
+import DB.PavilionMethods;
 import DB.UserPermitionsMethods;
+import Models.Bed;
+import Models.Pavilion;
 import Models.UserPermitions;
 import Utils.CurrentUser;
 import Utils.Strings;
@@ -10,6 +16,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MenuActivity extends Activity 
 {
@@ -61,7 +68,7 @@ public class MenuActivity extends Activity
 
 	public void pacientView(View view)
 	{
-		Intent intent = new Intent (this,BETAPatientsActivity.class); 
+		Intent intent=new Intent(this,PatientsActivity.class);
 		startActivity(intent);
 	}
 	public void personalView(View view)
@@ -76,13 +83,17 @@ public class MenuActivity extends Activity
 	}
 	public void peopleView(View view)
 	{
-		Intent intent=new Intent(this,PatientsActivity.class);
-		startActivity(intent);
+		PavilionMethods methods=new PavilionMethods(this);
+		ArrayList<Pavilion> pavilions=methods.GetAll();
+		for (Pavilion pavilion : pavilions) {
+			Toast.makeText(this, pavilion.getname()+" "+pavilion.getHalls().size(), Toast.LENGTH_SHORT).show();
+		}
 	}
 	public void hospitalizeView(View view)
 	{
 		Intent intent=new Intent(this,HospitalizeActivity.class);
 		startActivity(intent);
+		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

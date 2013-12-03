@@ -1,10 +1,19 @@
 package Models;
 
+import java.util.ArrayList;
+
 public class Pavilion {
 	private int pavilionID;
 	private String name;
 	private String description;
+	ArrayList<Hall> halls;
 	
+	public ArrayList<Hall> getHalls() {
+		return halls;
+	}
+	public void setHalls(ArrayList<Hall> pavilions) {
+		this.halls = pavilions;
+	}
 	public int getpavilionID(){
 		return pavilionID;
 	}
